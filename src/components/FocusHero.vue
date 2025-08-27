@@ -25,24 +25,38 @@ const safeBanner = computed(() => props.bannerSrc || '/vite.svg')
           <span class="label">{{ it.label }}</span>
         </a>
       </div>
-      <div class="banner">
-        <img :src="safeBanner" alt="banner" />
-      </div>
     </div>
   </section>
 </template>
 
 <style scoped>
-.focus-hero { background: #f7f7f7; }
+.focus-hero { 
+  background: url('/hero.jpg') no-repeat center center;
+  background-size: contain;
+  background-color: #f5f5f5;
+  position: relative;
+  min-height: 600px;
+  padding: 40px 0;
+}
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: 20px;
-  align-items: stretch;
+  position: relative;
+  height: 100%;
+  padding: 0 20px;
 }
-.panel { background: rgba(255,255,255,.85); padding: 20px 16px; border-radius: 6px; }
+.panel { 
+  background: rgba(255,255,255,.95); 
+  padding: 20px 16px; 
+  border-radius: 6px;
+  position: absolute;
+  left: 20px;
+  top: 40px;
+  width: 320px;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  backdrop-filter: blur(5px);
+}
 .row {
   display: flex;
   align-items: center;
@@ -52,9 +66,12 @@ const safeBanner = computed(() => props.bannerSrc || '/vite.svg')
   padding: 0 18px;
   font-size: 18px;
   text-decoration: none;
+  transition: all 0.3s ease;
+}
+.row:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 .row i { font-size: 24px; margin-right: 12px; }
 .row:last-child { margin-bottom: 0; }
-.banner { border-radius: 6px; overflow: hidden; background: #ddd; }
-.banner img { width: 100%; height: 100%; object-fit: cover; display: block; }
 </style> 
